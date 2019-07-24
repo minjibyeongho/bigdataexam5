@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mDAO">
+
+	<insert id="insert" parameterType="mDTO">
+		INSERT INTO music
+		VALUES(#{id},#{name},#{price},#{singer})
+	</insert>
+
+ 	<select id="select" parameterType="mDTO" resultMap="rsMap">
+		SELECT *
+		FROM music
+		WHERE id = #{id}
+	</select>
+
+	<resultMap type="mDTO" id="rsMap">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="price" column="price" />
+		<result property="singer" column="singer" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="rsMap">
+		SELECT * FROM music
+	</select>
+	
+
+
+	<delete id="delete" parameterType="mDTO">
+		DELETE FROM music WHERE
+		id = #{id}
+	</delete>
+
+ 	<update id="update" parameterType="mDTO">
+		UPDATE music
+		SET
+		price=#{price}
+		WHERE
+		id = #{id}
+	</update>
+
+</mapper>
